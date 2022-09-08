@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import utilities.ConfigurationReader;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 public class HrWithPath {
 
@@ -35,5 +36,22 @@ public class HrWithPath {
         String firstHref = response.path("items[0].links[0].href");
         System.out.println("firstHref = " + firstHref);
         assertEquals("http://3.83.123.243:1000/ords/hr/employees/103", firstHref);
+
+        //print all first_name
+        List<String> allFirstNames = response.path("items.first_name");
+        for (String eachFirstName : allFirstNames) {
+            System.out.println("eachFirstName = " + eachFirstName);
+        }
+
+        //print all salary
+        List<Integer> allSalaries = response.path("items.salary");
+        for (Integer eachSalary : allSalaries) {
+            System.out.println("eachSalary = " + eachSalary);
+        }
+
+        //Map<String, Integer> mapSalary = new HashMap<>();
+        //mapSalary.put(response.path("items.first_name"), response.path("items.salary"));
+        //System.out.println("mapSalary = " + mapSalary);
+
     }
 }
