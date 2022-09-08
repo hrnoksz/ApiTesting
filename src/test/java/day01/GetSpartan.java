@@ -37,4 +37,34 @@ public class GetSpartan {
        assertTrue(response.headers().hasHeaderWithName("Connection"));
 
     }
+
+    @Test
+    public void test2() {
+
+        Response response = given().accept(ContentType.JSON)
+                .and().pathParam("id", 10)
+                .when().get("/api/spartans/{id}");
+        response.prettyPrint();
+
+        assertEquals(200, response.statusCode());
+        assertEquals("application/json", response.contentType());
+
+        int id = response.path("id");
+        System.out.println("id = " + id);
+
+        String name = response.path("name");
+        System.out.println("name = " + name);
+
+       String gender = response.path("gender");
+        System.out.println("gender = " + gender);
+
+       long phone = response.path("phone");
+        System.out.println("phone = " + phone);
+
+        // verify all data
+        assertEquals(10, id);
+        assertEquals("Lorenza", name);
+        assertEquals("Female", gender);
+        assertEquals(3312820936l, phone);
+    }
 }
