@@ -1,6 +1,8 @@
 package day02;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,10 +13,11 @@ import utilities.ConfigurationReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class HrWithPath {
 
     @BeforeAll
-    public static void init(){
+    public static void init() {
 
         baseURI = ConfigurationReader.getProperty("hr_url");
     }
@@ -37,21 +40,26 @@ public class HrWithPath {
         System.out.println("firstHref = " + firstHref);
         assertEquals("http://3.83.123.243:1000/ords/hr/employees/103", firstHref);
 
-        //print all first_name
-        List<String> allFirstNames = response.path("items.first_name");
-        for (String eachFirstName : allFirstNames) {
-            System.out.println("eachFirstName = " + eachFirstName);
+        //print all first_names
+        List<String> names = response.path("items.first_name");
+        for (String name : names) {
+            System.out.println(name);
         }
 
-        //print all salary
-        List<Integer> allSalaries = response.path("items.salary");
-        for (Integer eachSalary : allSalaries) {
-            System.out.println("eachSalary = " + eachSalary);
+        //print all salaries
+        List<Integer> salaries = response.path("items.salary");
+        for (Integer salary : salaries) {
+            System.out.println(salary);
         }
 
-        //Map<String, Integer> mapSalary = new HashMap<>();
-        //mapSalary.put(response.path("items.first_name"), response.path("items.salary"));
-        //System.out.println("mapSalary = " + mapSalary);
+        Map<String, Integer> namesSalary = new HashMap<>();
 
+        for (int i = 0; i < names.size(); i++) {
+            namesSalary.put(names.get(i), salaries.get(i));
+        }
+        System.out.println(namesSalary);
     }
+
+
 }
+
