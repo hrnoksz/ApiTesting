@@ -53,5 +53,38 @@ public class SpartanWithJsonPath {
 
     @Test
     public void test2() {
+
+        Response response = given().accept(ContentType.JSON)
+                .when().get("/api/spartans");
+
+       response.prettyPrint();
+
+        JsonPath jsonPath = response.jsonPath();
+
+        List<Integer> idList = jsonPath.getList("id");
+
+        System.out.println("idList.size() = " + idList.size());
+
+        int count = 1;
+        for (Integer eachId : idList) {
+            System.out.println("id" + count +" = " + eachId);
+            count++;
+        }
+
+        System.out.println("jsonPath.getString(\"name[0]\") = " + jsonPath.getString("name[1]"));
+
+        List<Map<String, Object>> jsonList = response.body().as(List.class);
+
+        System.out.println("jsonList = " + jsonList);
+
+        System.out.println("jsonList.get(jsonList.size()-1).get(\"name\") = "
+                + jsonList.get(jsonList.size() - 1).get("name"));
+
+        Map<String, Object> spartan15 = jsonList.get(14);
+        System.out.println("spartan15 = " + spartan15);
+        spartan15.put("citizen", "Sparta");
+        System.out.println("spartan15 = " + spartan15);
+
+
     }
 }
