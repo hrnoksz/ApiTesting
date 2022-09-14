@@ -24,6 +24,7 @@ public class HamcrestMatchersWithSpartan {
     public void test1() {
         given().accept(ContentType.JSON)
                 .pathParam("id", 15)
+                .log().all()
         .when()
                 .get("/api/spartans/{id}")
         .then()
@@ -33,7 +34,8 @@ public class HamcrestMatchersWithSpartan {
                 .header("Date", notNullValue())
                 .and().assertThat()
                 .body("id", is(15), "name", is("Meta"),
-                        "gender", is("Female"), "phone", is(1938695106));
+                        "gender", is("Female"), "phone", is(1938695106))
+                .log().all();
     }
 
     @Test
