@@ -36,16 +36,16 @@ public class RegionsWithPOJO {
        System.out.println("regions.getLimit() = " + regions.getLimit());
        System.out.println("regions.isHasMore() = " + regions.isHasMore());
 
-       System.out.println("regions.getItems().get(0).getRegion_name() = " + regions.getItems().get(0).getRegion_name());
+       System.out.println("regions.getItems().get(0).getRegion_name() = " + regions.getItems().get(0).getRegionName());
 
         ArrayList<Item> items = regions.getItems();
-       System.out.println("items.get(0).getRegion_id() = " + items.get(0).getRegion_id());
+       System.out.println("items.get(0).getRegion_id() = " + items.get(0).getRegionId());
 
-       System.out.println("items.get(0).getRegion_name() = " + items.get(0).getRegion_name());
+       System.out.println("items.get(0).getRegion_name() = " + items.get(0).getRegionName());
 
         for (Item eachItem : items) {
-            System.out.println("eachItem.getRegion_name() = " + eachItem.getRegion_name());
-            System.out.println("eachItem.getRegion_id() = " + eachItem.getRegion_id());
+            System.out.println("eachItem.getRegion_name() = " + eachItem.getRegionName());
+            System.out.println("eachItem.getRegion_id() = " + eachItem.getRegionId());
         }
         System.out.println("items.get(0).getLinks().get(0).getHref() = " + items.get(0).getLinks().get(0).getHref());
 
@@ -63,6 +63,6 @@ public class RegionsWithPOJO {
 
         System.out.println("regions.getOffset() = " + regions.getOffset());
 
-        System.out.println("regions.getItems().get(1).getRegion_name() = " + regions.getItems().get(1).getRegion_name());
+        System.out.println("regions.getItems().get(1).getRegion_name() = " + regions.getItems().get(1).getRegionName());
     }
 }
