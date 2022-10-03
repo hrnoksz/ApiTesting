@@ -22,6 +22,8 @@ public class BookItTest {
     @DisplayName("GET all campuses")
     @Test
     public void testAuth1(){
+
+        //how to pass bearer token for bookit? Use header method to give as key value header
         given().header("Authorization", accessToken)
                 .and().accept(ContentType.JSON)
         .when()
